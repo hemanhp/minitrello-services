@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/src
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=trello
+      - POSTGRES_USER=trello
+      - POSTGRES_PASSWORD=123@456
+
+volumes:
+  postgres-data:

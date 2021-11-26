@@ -9,3 +9,4 @@ Pillow==8.4.0
 uWSGI>=2.0.19.1,<2.1
 celery==5.1.2
 redis==3.5.3
+djangorestframework-simplejwt==5.0.0
